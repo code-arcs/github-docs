@@ -42,7 +42,7 @@ const services = [
 ];
 
 
-const r = conn.repos.getForOrg({org: 'gbtec-ag'})
+const r = conn.repos.getForOrg({org: ORG})
     .then(r => {
         r.map(r => r.name)
             .forEach(name => {
