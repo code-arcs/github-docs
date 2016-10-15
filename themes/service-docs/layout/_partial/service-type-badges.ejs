@@ -1,0 +1,13 @@
+<% if (service.serviceTypes && service.serviceTypes.length > 0) { %>
+
+<div class="service-badges">
+    <% if (Array.isArray(service.serviceTypes)) { %>
+        <% page.serviceTypes.forEach(function(type) { %>
+            <%- partial('_partial/service-type-badge', {type: type}) %>
+        <% }) %>
+    <% } else { %>
+        <%- partial('_partial/service-type-badge', {type: service.serviceTypes}) %>
+    <% } %>
+</div>
+
+<% } %>

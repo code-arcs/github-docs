@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titel</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <%- css('css/style') %>
+</head>
+<body>
+    <div class="wrapper">
+        <nav>
+            <h2>Services</h2>
+            <ul class="service-list">
+                <% var services = [] %>
+                <% site.posts.each(function(service){  %>
+                <%    services.push(service)  %>
+                <% }); %>
+                <% services.sort((a,b) => a.title.localeCompare(b.title)); %>
+                <% services.forEach(function(service) { %>
+                <%- partial('_partial/service-list-item', {service: service}) %>
+                <% }); %>
+            </ul>
+        </nav>
+        <main class="content">
+            <%- body %>
+        </main>
+    </div>
+</body>
+</html>
