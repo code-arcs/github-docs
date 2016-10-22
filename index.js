@@ -36,13 +36,25 @@ const gitHubConnection = github.getConnection();
 
 const r = gitHubConnection.repos.getForOrg({org: ORG})
     .then(repositories => {
-        repositories.map(repository => repository.name)
-            .forEach(createPostForEachRepository)
+        const reposNames = repositories.map(repository => repository.name);
+
+        createPostForEachRepository(reposNames);
     });
 
-function createPostForEachRepository(name){
-    github.getServiceInfo(name)
-        .then(r => fs.writeFileSync(`./source/_posts/${name}.md`, HexoHelper.createPost(r), 'utf8'));
+
+
+function createPostForEachRepository(names) {
+    const name = names.pop();
+    console.log("create post for: ", name);
+    return github.getServiceInfo(name)
+        .then(r => fs.writeFileSync(`./source/_posts/${name}.md`, HexoHelper.createPost(r), 'utf8'))
+        .then(()=>{
+            if(names.length === 0){
+                console.log("finished");
+            }else {
+                createPostForEachRepository(names);
+            }
+        });
 }
 
 // services.forEach(name => {
