@@ -1,3 +1,4 @@
+'use strict';
 const GitHubApi = require("github");
 const fs = require("fs");
 const nconf = require("nconf");
@@ -31,25 +32,18 @@ const PASSWORD = nconf.get('password');
 const ORG = nconf.get('org');
 
 const github = new Util(USERNAME, PASSWORD, ORG);
-const conn = github.getConnection();
+const gitHubConnection = github.getConnection();
 
-const services = [
-    'biccloud-webclient-login',
-    'biccloud-webclient',
-    'biccloud-apigateway',
-    'biccloud-domain-service',
-    'biccloud-method-service'
-];
-
-
-const r = conn.repos.getForOrg({org: ORG})
-    .then(r => {
-        r.map(r => r.name)
-            .forEach(name => {
-                github.getServiceInfo(name)
-                    .then(r => fs.writeFileSync(`./source/_posts/${name}.md`, HexoHelper.createPost(r), 'utf8'));
-            })
+const r = gitHubConnection.repos.getForOrg({org: ORG})
+    .then(repositories => {
+        repositories.map(repository => repository.name)
+            .forEach(createPostForEachRepository)
     });
+
+function createPostForEachRepository(name){
+    github.getServiceInfo(name)
+        .then(r => fs.writeFileSync(`./source/_posts/${name}.md`, HexoHelper.createPost(r), 'utf8'));
+}
 
 // services.forEach(name => {
 //     github.getServiceInfo(name)

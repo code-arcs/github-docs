@@ -1,7 +1,0 @@
----
-title: biccloud-docker-client
-languages:
-    - Shell
----
-
-# BIC Cloud Runtime Configuration _BIC Cloud_ is run by multiple Docker containers which are orchestrated using Docker-Compose. This repository provides some scripts which allows users to start _BIC Cloud_ without deep knowledge of Docker .## Installation1. `docker` and `docker-compose` CLI are mandatory for the following tasks.1. cone this repository on the target machine.1. adjust variables in the config file `setEnv.sh`## Usage### Quick-Start1. Login to quay.io by running the command `docker login quay.io` using the given credentials1. Execute the script  `$ ./rebuildAndUp.sh` ### Update specific ServicesWhen it is required to pull a new docker-image for one or all service(s), the script `updatePartial.sh` allows one to do so. The usage is as follows:`$ ./updatePartial.sh [SERVICES...]` If no service name is provided, the script checks for all services      ## Troubleshooting 1. When running `docker-compose up` an error 4XX occurs:      Try pulling each required image of BIC Cloud via `docker pull` manually. (E.g. `docker pull quay.io/gbtec/biccloud_balancer`)## LicenseCopyright (c) 2005 - 2016, [GBTEC Software + Consulting AG](http://www.gbtec.de)All rights reserved (see [license](./LICENSE.txt) for details).
