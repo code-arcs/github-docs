@@ -41,23 +41,17 @@ const r = gitHubConnection.repos.getForOrg({org: ORG})
         createPostForEachRepository(reposNames);
     });
 
-
-
 function createPostForEachRepository(names) {
     const name = names.pop();
     console.log("create post for: ", name);
     return github.getServiceInfo(name)
         .then(r => fs.writeFileSync(`./source/_posts/${name}.md`, HexoHelper.createPost(r), 'utf8'))
-        .then(()=>{
-            if(names.length === 0){
+        .then(() => {
+            if (names.length === 0) {
                 console.log("finished");
-            }else {
+            } else {
                 createPostForEachRepository(names);
             }
-        });
+        })
+        .catch(err => console.error(err));
 }
-
-// services.forEach(name => {
-//     github.getServiceInfo(name)
-//         .then(r => fs.writeFileSync(`./source/_posts/${name}.md`, HexoHelper.createPost(r), 'utf8'));
-// });

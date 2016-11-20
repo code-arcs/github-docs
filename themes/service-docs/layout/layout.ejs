@@ -11,13 +11,13 @@
 <body>
     <div class="wrapper">
         <nav>
-            <h2>Services</h2>
+            <h2>Services <small>(<%- site.posts.length %>)</small></h2>
             <ul class="service-list">
                 <% var services = [] %>
                 <% site.posts.each(function(service){  %>
                 <%    services.push(service)  %>
                 <% }); %>
-                <% services.sort((a,b) => a.title.localeCompare(b.title)); %>
+                <% services = services.sort((a,b) => a.slug.localeCompare(b.slug)); %>
                 <% services.forEach(function(service) { %>
                 <%- partial('_partial/service-list-item', {service: service}) %>
                 <% }); %>
