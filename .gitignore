@@ -1,4 +1,4 @@
 public/
-source/_post
+source/_posts/
 .npmignore
 db.json
