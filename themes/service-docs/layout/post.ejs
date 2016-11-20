@@ -8,48 +8,57 @@
             <% } %>
         </h1>
         <div class="service-meta">
-            <% if (page.languages && page.languages.length) { %>
-            <ul class="horizontal-list language has-after-label">
-                <% page.languages.forEach(function(languages) { %>
-                <li><%= languages %></li>
-                <% }) %>
-            </ul>
-            <% } %>
+            <div class="row">
+                <% if (page.languages && page.languages.length) { %>
+                <ul class="horizontal-list language has-after-label">
+                    <% page.languages.forEach(function(languages) { %>
+                    <li><%= languages %></li>
+                    <% }) %>
+                </ul>
+                <% } %>
 
-            <% if (page.dependsOn && page.dependsOn.length) { %>
-            <ul class="horizontal-list service has-after-label">
-                <% page.dependsOn.forEach(function(service) { %>
-                <li>
-                    <a href="/<%= service %>">
-                        <span class="icon fa fa-sitemap"></span>
-                        <%= service %>
-                    </a>
-                </li>
-                <% }) %>
-            </ul>
-            <% } %>
+                <% if (page.uses && page.uses.length) { %>
+                <ul class="horizontal-list service has-after-label">
+                    <% page.uses.forEach(function(service) { %>
+                    <li>
+                        <a href="/<%= service %>">
+                            <span class="icon fa fa-sitemap"></span>
+                            <%= service %>
+                        </a>
+                    </li>
+                    <% }) %>
+                </ul>
+                <% } %>
 
-            <% if (page.contributors && page.contributors.length) { %>
-            <ul class="horizontal-list maintainer has-after-label">
-                <% page.contributors.forEach(function(contributors) { %>
-                <li>
-                    <span class="icon fa fa-user"></span>
-                    <%= contributors %>
-                </li>
-                <% }) %>
-            </ul>
-            <% } %>
+                <% if (page.contributors && page.contributors.length) { %>
+                <ul class="horizontal-list maintainer has-after-label">
+                    <% page.contributors.forEach(function(contributor) { %>
+                    <li>
+                        <a href="/users/<%= contributor %>">
+                            <span class="icon fa fa-user"></span>
+                            <%= contributor %>
+                        </a>
+                    </li>
+                    <% }) %>
+                </ul>
+                <% } %>
 
-            <% if (page.responsible && page.responsible.length) { %>
-            <ul class="horizontal-list responsible has-after-label">
-                <% page.responsible.forEach(function(responsible) { %>
-                <li>
-                    <span class="icon fa fa-user"></span>
-                    <%= responsible %>
-                </li>
-                <% }) %>
-            </ul>
-            <% } %>
+                <% if (page.responsible && page.responsible.length) { %>
+                <ul class="horizontal-list responsible has-after-label">
+                    <% page.responsible.forEach(function(responsible) { %>
+                    <li>
+                        <span class="icon fa fa-user"></span>
+                        <%= responsible %>
+                    </li>
+                    <% }) %>
+                </ul>
+                <% } %>
+            </div>
+            <dic class="row">
+                <% if (page.message) { %>
+                <%- partial('_partial/service-messages', {message: page.message}) %>
+                <% } %>
+            </dic>
         </div>
     </header>
     <div class="service-description">

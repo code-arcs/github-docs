@@ -1,0 +1,21 @@
+<article class="message">
+    <header>
+        <h1>
+            Message: <%- page.title %>
+        </h1>
+    </header>
+    <main>
+        <div class="send">
+            <h2><span class="fa fa-upload"></span> Sending</h2>
+            <% page.posts.send.forEach(function(page) { %>
+            <h4><a href="/<%- page.slug %>/"><%- page.title %></a></h4>
+            <% }) %>
+        </div>
+        <div class="consume">
+            <h2><span class="fa fa-download"></span> Consume</h2>
+            <% page.posts.consume.forEach(function(page) { %>
+            <h4><a href="/<%- page.slug %>/"><%- page.title %></a></h4>
+            <% }) %>
+        </div>
+    </main>
+</article>

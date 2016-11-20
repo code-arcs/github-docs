@@ -1,0 +1,18 @@
+<div class="service-summary">
+    <h4><a href="/<%- service.slug %>/"><%- service.title %></a></h4>
+    <div class="service-meta">
+        <div class="row">
+            <% if (service.languages && service.languages.length) { %>
+            <ul class="horizontal-list language has-after-label">
+                <% service.languages.forEach(function(languages) { %>
+                <li><%= languages %></li>
+                <% }) %>
+            </ul>
+            <% } %>
+
+            <% if (service.message) { %>
+            <%- partial('_partial/service-messages', {message: service.message}) %>
+            <% } %>
+        </div>
+    </div>
+</div>

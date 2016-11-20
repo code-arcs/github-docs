@@ -1,0 +1,30 @@
+<div class="message has-after-label">
+    <% if (message.send && message.send.length) { %>
+    <div class="send">
+        <ul class="list">
+        <% message.send.forEach(function(send) { %>
+            <li>
+                <a href="/message/<%- new Buffer(send).toString('base64') %>">
+                    <span class="icon fa fa-upload"></span>
+                    <%= send %>
+                </a>
+            </li>
+        <% }) %>
+        </ul>
+    </div>
+    <% } %>
+    <% if (message.consume && message.consume.length) { %>
+    <div class="consume">
+        <ul class="list">
+        <% message.consume.forEach(function(consume) { %>
+            <li>
+                <a href="/message/<%- new Buffer(consume).toString('base64') %>">
+                    <span class="icon fa fa-download"></span>
+                    <%= consume %>
+                </a>
+            </li>
+        <% }) %>
+        </ul>
+    </div>
+    <% } %>
+</div>

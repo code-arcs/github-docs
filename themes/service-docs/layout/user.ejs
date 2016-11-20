@@ -1,0 +1,12 @@
+<article class="service">
+    <header>
+        <h1>
+            User contributions: <%- page.title %>
+        </h1>
+    </header>
+    <main>
+        <% page.posts.forEach(function(page) { %>
+        <%- partial('_partial/service-summary', {service: page}) %>
+        <% }) %>
+    </main>
+</article>

@@ -6,6 +6,13 @@ article {
   border: 1px solid #ddd;
   border-radius: 3px;
 
+  > main {
+    position: relative;
+    margin-top: 20px;
+    text-align: justify;
+    padding: 0 20px;
+  }
+
   .service-badges {
     position: absolute;
     top: 0;
@@ -31,7 +38,6 @@ article {
     }
   }
 
-
   header {
     padding: 0 20px;
     padding-top: 20px;
@@ -44,7 +50,9 @@ article {
   }
 
   .service-meta {
+    position: relative;
     display: flex;
+    flex-direction: column;
     margin: 20px 0 8px 0;
     font-size: 0.7em;
 
@@ -59,9 +67,18 @@ article {
       border-radius: 3px;
     }
 
-    > * {
-      flex: 1 0 0;
-      position: relative;
+    .row {
+      display: flex;
+
+      &:not(:last-child) {
+        margin-bottom: 24px;
+      }
+
+      > * {
+        flex: 1 0 0;
+        max-width: 33%;
+        position: relative;
+      }
     }
 
     .language:after {
@@ -79,13 +96,37 @@ article {
     .responsible:after {
       content: 'Responsible persons:'
     }
+
+    .message {
+      display: flex;
+
+      .send, .consume {
+        flex 1 0 0;
+      }
+
+      .send {
+        padding-right: 1px;
+      }
+      .consume {
+        padding-left: 1px;
+      }
+
+      &:after {
+        content: 'AMQP Messages:'
+      }
+    }
   }
 
   .service-description {
+    overflow-x: auto;
     position: relative;
     margin-top: 20px;
     text-align: justify;
     padding: 0 20px;
   }
 
+  .service-summary {
+    position: relative;
+    flex: 1 0 0;
+  }
 }
