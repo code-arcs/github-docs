@@ -2,3 +2,4 @@ public/
 source/_posts/
 .npmignore
 db.json
+./source/_posts
